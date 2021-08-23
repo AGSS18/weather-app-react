@@ -1,0 +1,88 @@
+.Weather {
+  color: white;
+}
+
+.one-day-temp-container {
+  position: relative;
+  max-width: 60%;
+  top: 0;
+  border: none;
+  margin: 0px auto 10px;
+  border-radius: 15px;
+  padding: 0px 0px 50px;
+  text-align: center;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  /*background-image: url("../media/cloud.jpg");*/
+  background-size: cover;
+}
+
+.Weather .city {
+  font-family: "roboto";
+  font-weight: 600;
+  font-size: 45px;
+  margin: 0;
+  padding-top: 10px;
+  text-transform: capitalize;
+}
+
+.Weather .principal-data {
+  font-size: 13px;
+  font-family: "roboto";
+  line-height: 0.5px;
+  margin-bottom: 30px;
+}
+
+.Weather .main-temp {
+  font-size: 60px;
+  text-align: center;
+  position: relative;
+  left: 10px;
+  margin-top: 10px;
+}
+
+.Weather .unit-button {
+  transition: all 200ms ease-in-out;
+  text-decoration: underline #ccc;
+}
+
+.Weather .unit-button:hover {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.Weather .icon-temp {
+  font-size: 80px;
+  text-align: center;
+}
+
+.Weather .condition {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  font-size: 25px;
+  text-transform: capitalize;
+}
+
+.Weather .wind {
+  margin: 0;
+  line-height: 0px;
+  position: relative;
+  font-size: 20px;
+  padding-top: 20px;
+}
+
+.Weather .precipitation {
+  line-height: 0px;
+  position: relative;
+  right: 9px;
+  font-size: 20px;
+  padding-top: 20px;
+  margin-bottom: 0;
+}
+
+.Weather .percentage {
+  font-size: 9px;
+  position: relative;
+  bottom: 10px;
+  right: 5px;
+}
