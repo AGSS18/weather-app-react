@@ -6,15 +6,15 @@ export default function Footer() {
   return (
     <div className="Footer">
       <p className="footer">
-        <span>Coded by </span>
         <a
-          href="https://www.shecodes.io/students/333-ana-sala"
+          href="https://github.com/AGSS18/weather-app-react"
           target="_blank"
           className="coder"
           rel="noreferrer"
-        >
-          Ana Sala
+          >
+          <span>Open-source code </span>
         </a>
+          <span>by Ana Sala</span> 
       </p>
     </div>
   );
