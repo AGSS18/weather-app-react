@@ -19,10 +19,11 @@ export default function Search() {
         <form id="search-form">
           <input
             type="text"
-            placeholder="search..."
+            placeholder="Enter a city..."
             size="25px"
             className="search-city"
             id="search-city"
+            autoFocus="on"
           />
           <button type="submit" className="search-button">
             <i className="fa fa-search"></i>

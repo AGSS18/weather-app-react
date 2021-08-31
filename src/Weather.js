@@ -1,17 +1,31 @@
-import React from "react";
-import background from "./media/cloud.jpg";
+import React, {useState} from "react";
+import axios from "axios";
 
 import "./Weather.css";
 
-export default function Weather() {
-  return (
+export default function Weather(props) {
+  const [weatherData, setWeatherData] = useState({ready: false});
+
+  function handleResponse(response) {
+    setWeatherData({
+      ready: true,
+      temperature: Math.round(response.data.main.temp),
+      wind: response.data.wind.speed,
+      city: response.data.name,
+      humidity: response.data.main.humidity,
+      description: response.data.weather[0].description,
+      mainDescription: response.data.weather[0].main,
+    });
+  }
+
+  if(weatherData.ready) {
+    return (
     <div className="Weather">
       <div
         className="one-day-temp-container"
-        style={{ backgroundImage: `url(${background})` }}
       >
         <p className="city" id="city">
-          Monterrey
+          {weatherData.city}
         </p>
         <div className="principal-data" id="principal-date">
           <span className="main-day">Monday</span>,
@@ -23,7 +37,7 @@ export default function Weather() {
           <div className="col-sm-4">
             <h1 className="main-temp">
               <span className="temperature" id="main-temp">
-                26
+                {weatherData.temperature}
               </span>
               °
               <span className="units unit-button" id="principal-unit">
@@ -38,14 +52,14 @@ export default function Weather() {
               </span>
             </div>
             <div className="row">
-              <span className="condition">Partly Cloudy</span>
+              <span className="condition">{weatherData.description}</span>
             </div>
           </div>
           <div className="col-sm-4">
             <div className="row">
               <p className="wind">
                 <i className="fas fa-wind"></i>{" "}
-                <span className="main-wind">8</span>
+                <span className="main-wind">{weatherData.wind}</span>
                 km/h
               </p>
             </div>
@@ -53,7 +67,7 @@ export default function Weather() {
               <p className="precipitation">
                 <i className="fas fa-tint"></i>
                 <i className="fas fa-percentage percentage"></i>
-                <span className="humidity"> 69</span>%
+                <span className="humidity"> {weatherData.humidity}</span>%
               </p>
             </div>
           </div>
@@ -61,4 +75,15 @@ export default function Weather() {
       </div>
     </div>
   );
+  } else {
+    const apiKey = "2a2676887289368652de121a9db03637";
+  
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
+  
+    axios.get(apiUrl).then(handleResponse);
+    return "Loading..."
+  }
+
+
+  
 }
