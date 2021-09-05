@@ -1,6 +1,5 @@
 //import logo from './logo.svg';
 import React from "react";
-import Search from "./Search";
 import Weather from "./Weather";
 import Forecast from "./Forecast";
 import Footer from "./Footer.js";
@@ -13,7 +12,6 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <Search />
         <Weather defaultCity="Monterrey"/>
         <Forecast />
         <Footer />
