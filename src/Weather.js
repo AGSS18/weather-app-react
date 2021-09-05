@@ -7,6 +7,8 @@ import "./Weather.css";
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ready: false});
   const [city, setCity] = useState(props.defaultCity);
+  const [hidden, setHidden] = useState(true);
+  const [favCities, setFavCities] = useState("");
 
   function search() {
     const apiKey = "2a2676887289368652de121a9db03637";
@@ -38,20 +40,28 @@ export default function Weather(props) {
     });
   }
 
+  function showFavCities(event) {
+    event.preventDefault();
+    if(hidden === true) {
+      setFavCities("");
+      setHidden(false);
+    } else {
+      setFavCities(<ul className="favorites" id="favorites">
+            <li className="city-one">Monterrey</li>
+            <li className="city-two">Cancún</li>
+            <li className="city-three">Guadalajara</li>
+            <li className="city-four">New York</li>
+            <li className="city-five">San Antonio</li>
+          </ul>);
+      setHidden(true);   
+    }
+  }
+
   if(weatherData.ready) {
     return (
       <div className="Weather">
         <div className="Search">
-        <ul className="favorites" id="favorites">
-          <li className="city-one">Paris</li>
-          <li className="city-two">Lisbon</li>
-          <li className="city-three">Sydney</li>
-          <li className="city-four">San Francisco</li>
-          <li className="city-five">Monterrey</li>
-          <li className="edit">
-            <i className="fas fa-pencil-alt"></i>
-          </li>
-        </ul>
+          {favCities}
         <div className="search-container">
           <form onSubmit={handleSubmit} id="search-form">
             <input
@@ -74,7 +84,7 @@ export default function Weather(props) {
               <i className="fas fa-map-marker-alt"></i>
             </button>
             <button type="button" className="plus-icon" id="plus-icon">
-              <i className="fas fa-plus"></i>
+              <i onClick={showFavCities} className="fas fa-star"></i>
             </button>
           </form>
         </div>

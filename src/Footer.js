@@ -12,9 +12,9 @@ export default function Footer() {
           className="coder"
           rel="noreferrer"
           >
-          <span>Open-source code </span>
+          <span>Open-source code</span>
         </a>
-          <span>by Ana Sala</span> 
+          <span> by Ana Sala</span> 
       </p>
     </div>
   );
