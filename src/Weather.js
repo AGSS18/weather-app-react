@@ -8,7 +8,6 @@ export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ready: false});
   const [city, setCity] = useState(props.defaultCity);
 
-
   function search() {
     const apiKey = "2a2676887289368652de121a9db03637";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;

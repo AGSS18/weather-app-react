@@ -1,6 +1,7 @@
 import React from "react";
 import HandleDate from "./HandleDate";
 import HandleMainIcon from "./HandleMainIcon";
+import UnitsConvertion from "./UnitsConvertion";
 
 export default function WeatherInfo(props){
     return( 
@@ -12,20 +13,13 @@ export default function WeatherInfo(props){
         </p>
         <HandleDate date={props.data.date} />
         <div className="row midle-info">
-          <div className="col-sm-4">
-            <h1 className="main-temp">
-              <span className="temperature" id="main-temp">
-                {props.data.temperature}
-              </span>
-              °
-              <span className="units unit-button" id="principal-unit">
-                C
-              </span>
-            </h1>
-          </div>
+          
+          <UnitsConvertion temperature={props.data.temperature}/>
+
+
           <div className="col-sm-4">
             <div className="row">
-              
+
                 <HandleMainIcon description={props.data.mainDescription}/>
               
             </div>
