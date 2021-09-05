@@ -1,5 +1,6 @@
 import React from "react";
 import HandleDate from "./HandleDate";
+import HandleMainIcon from "./HandleMainIcon";
 
 export default function WeatherInfo(props){
     return( 
@@ -24,9 +25,9 @@ export default function WeatherInfo(props){
           </div>
           <div className="col-sm-4">
             <div className="row">
-              <span className="icon-temp">
-                <i className="fas fa-cloud-sun" id="icon-temp"></i>
-              </span>
+              
+                <HandleMainIcon description={props.data.mainDescription}/>
+              
             </div>
             <div className="row">
               <span className="condition">{props.data.description}</span>
