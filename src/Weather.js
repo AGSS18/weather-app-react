@@ -100,4 +100,4 @@ export default function Weather(props) {
     search();
     return "Loading...";
   } 
-}
+} 
