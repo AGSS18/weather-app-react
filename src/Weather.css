@@ -12,7 +12,7 @@
   padding: 0px 0px 50px;
   text-align: center;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-  /* background-image: url("./media/cloud.jpg"); */
+  background-image: url("./media/cloud.jpg");
   background-size: cover;
 }
 
