@@ -54,8 +54,9 @@ export default function WeatherInfo(props){
 
           <div className="col-sm-4">
             <div className="row">
-
+              <span className="icon-temp">
                 <HandleMainIcon description={props.data.mainDescription}/>
+              </span>
               
             </div>
             <div className="row">

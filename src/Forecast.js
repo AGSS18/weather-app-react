@@ -1,126 +1,56 @@
-import React from "react";
+import React, {useState} from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import HandleMainIcon from "./HandleMainIcon";
 
 import "./Forecast.css";
+import axios from "axios";
 
-export default function Forecast() {
-  return (
-    <div className="Forecast">
-      <div className="seven-day-container">
-        <div className="sev-day-rowone">
-          <div className="row">
-            <div className="col-sm-2">
-              <div className="row">
-                <p className="day-two days">TUE</p>
-              </div>
-              <div className="row">
-                <span className="other-icons">
-                  <i className="fas fa-cloud icon-two"></i>
-                </span>
-              </div>
-              <div className="row">
-                <p className="temp-two">
-                  <span className="temperature all-temps">30</span>°
-                  <span className="units" id="unit-two">
-                    C
+export default function Forecast(props) {
+  let [forecast, setForecast] = useState(null);
+  let [loaded, setLoaded] = useState(false);
+  // console.log(props.date)
+
+  let shortWeekDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  let day = props.date.getDay();
+  day = day + 1;
+  let textDay = shortWeekDays[day]; 
+
+  function handleResponse(response) {
+    setForecast(response.data.daily);
+    setLoaded(true);
+  }
+  
+  if(loaded) {
+    return (
+      <div className="Forecast">
+        <div class="seven-day-container">
+          <div class="sev-day-rowone">
+            <div class="row">
+              <div class="col-sm-2">
+                <div class="row">
+                  <p class="day-two days">{textDay}</p>
+                </div>
+                <div class="row">
+                  <span class="other-icons">
+                    <HandleMainIcon description={forecast[day].weather[0].main} />
                   </span>
-                </p>
-              </div>
-            </div>
-            <div className="col-sm-2">
-              <div className="row">
-                <p className="day-three days">WED</p>
-              </div>
-              <div className="row">
-                <span className="other-icons">
-                  <i className="fas fa-sun icon-three"></i>
-                </span>
-              </div>
-              <div className="row">
-                <p className="temp-three">
-                  <span className="temperature all-temps">31</span>°
-                  <span className="units" id="unit-three">
-                    C
-                  </span>
-                </p>
-              </div>
-            </div>
-            <div className="col-sm-2">
-              <div className="row">
-                <p className="day-four days">THU</p>
-              </div>
-              <div className="row">
-                <span className="other-icons">
-                  <i className="fas fa-cloud-sun-rain icon-four"></i>
-                </span>
-              </div>
-              <div className="row">
-                <p className="temp-four">
-                  <span className="temperature all-temps">34</span>°
-                  <span className="units" id="unit-four">
-                    C
-                  </span>
-                </p>
-              </div>
-            </div>
-            <div className="col-sm-2">
-              <div className="row">
-                <p className="day-five days">FRI</p>
-              </div>
-              <div className="row">
-                <span className="other-icons">
-                  <i className="fas fa-cloud-showers-heavy icon-five"></i>
-                </span>
-              </div>
-              <div className="row">
-                <p className="temp-five">
-                  <span className="temperature all-temps">32</span>°
-                  <span className="units" id="unit-five">
-                    C
-                  </span>
-                </p>
-              </div>
-            </div>
-            <div className="col-sm-2">
-              <div className="row">
-                <p className="day-six days">SAT</p>
-              </div>
-              <div className="row">
-                <span className="other-icons">
-                  <i className="far fa-snowflake icon-six"></i>
-                </span>
-              </div>
-              <div className="row">
-                <p className="temp-six">
-                  <span className="temperature all-temps">-10</span>°
-                  <span className="units" id="unit-six">
-                    C
-                  </span>
-                </p>
-              </div>
-            </div>
-            <div className="col-sm-2">
-              <div className="row">
-                <p className="day-seven days">SUN</p>
-              </div>
-              <div className="row">
-                <span className="other-icons">
-                  <i className="fas fa-cloud-rain icon-seven"></i>
-                </span>
-              </div>
-              <div className="row">
-                <p className="temp-seven">
-                  <span className="temperature all-temps">28</span>°
-                  <span className="units" id="unit-seven">
-                    C
-                  </span>
-                </p>
+                </div>
+                <div class="row">
+                  <p class="max-min-temp"><span class="max-temp temperature">{Math.round(forecast[day].temp.max)}</span>° <span class="min-temp temperature">{Math.round(forecast[day].temp.min)}</span>°</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+      let apiKey = "2a2676887289368652de121a9db03637";
+      let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${props.lat}&lon=${props.lon}&appid=${apiKey}&units=metric`;
+    
+      axios.get(apiUrl).then(handleResponse);
+      return null;
+    }
+  
 }

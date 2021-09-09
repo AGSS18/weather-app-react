@@ -26,10 +26,5 @@ export default function HandleMainIcon(props) {
         }
     }
 
-    return(
-        <span className="icon-temp">
-                {icon}
-        </span>
-        
-    );
+    return(icon);
 }

@@ -2,11 +2,12 @@ import React, {useState} from "react";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 import "./Weather.css";
+import Forecast from "./Forecast";
 
 export default function Weather(props) {
  
   const [weatherData, setWeatherData] = useState({ready: false});
-  const [city, setCity] = useState(props.defaultCity);
+  let [city, setCity] = useState(props.defaultCity);
   const [hidden, setHidden] = useState(true);
   const [favCities, setFavCities] = useState("");
   
@@ -22,7 +23,6 @@ export default function Weather(props) {
     search();
   }
   
-  
   function handleCityChange(event) {
     setCity(event.target.value);
   }
@@ -37,11 +37,14 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       description: response.data.weather[0].description,
       mainDescription: response.data.weather[0].main,
+      longitude: response.data.coord.lon,
+      latitude: response.data.coord.lat,
     });
   }
   
   function handleFavCity(event) {
-    search(event.target.innerHTML);
+    city = event.target.innerHTML;
+    search();
   }
   
   function showFavCities(event) {
@@ -94,6 +97,7 @@ export default function Weather(props) {
         </div>
       </div>
       <WeatherInfo data={weatherData}/>
+      <Forecast lon={weatherData.longitude} lat={weatherData.latitude} date={weatherData.date}/>
     </div>
   );
   } else {
