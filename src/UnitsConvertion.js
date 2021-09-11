@@ -1,19 +1,22 @@
-import React, {useState} from "react";
+import React from "react";
 
 export default function UnitsConvertion(props){
-    const [unit, setUnit] = useState("celsius");
+    let units = "";
+
     
     function convertCelsius(event){
-        event.preventDefault();
-            setUnit("fahrenheit"); 
+      event.preventDefault();
+      props.changeUnits(units = "imperial");
     }
 
     function convertFahrenheit(event){
         event.preventDefault();
-            setUnit("celsius"); 
+        props.changeUnits(units = "metric");
+
     }
 
-    if(unit === "celsius") {
+    console.log(props.temperature)
+    if(props.weatherInforUnits === "metric") {
         return(
             <div className="UnitsConvertion col-sm-4">
                 <h1 className="main-temp">

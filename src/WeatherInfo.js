@@ -38,6 +38,8 @@ export default function WeatherInfo(props){
   //   }
   // }
 
+  console.log(props.weatherUnits);
+
     return( 
     <div
         className="one-day-temp-container"
@@ -49,7 +51,7 @@ export default function WeatherInfo(props){
         <HandleDate date={props.data.date} />
         <div className="row midle-info">
           
-          <UnitsConvertion temperature={props.data.temperature}/>
+          <UnitsConvertion temperature={props.data.temperature} changeUnits={props.changeUnits} weatherInforUnits={props.weatherUnits} />
 
 
           <div className="col-sm-4">

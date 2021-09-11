@@ -1,39 +1,32 @@
 import React from "react";
-
 import HandleMainIcon from "./HandleMainIcon";
 
 export default function ForecastDaysComponent(props) {
 
     function maxTemp() {
-        return Math.round(props.forecast.temp.max);
+        let rounded = Math.round(props.forecast.temp.max);
+        return props.units === "metric" ? rounded : Math.round(((rounded * 9) / 5 + 32));
     }
 
     function minTemp() {
-        return Math.round(props.forecast.temp.min);
+        let rounded = Math.round(props.forecast.temp.min);
+        return props.units === "metric" ? rounded : Math.round(((rounded * 9) / 5 + 32));
+        
     }
 
     function handleDay() {
         let date = new Date(props.forecast.dt * 1000);
-        // let day = shortWeekDays[date.getDay()];
-        // return day
-        
+        let shortWeekDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+        let day = shortWeekDays[date.getDay()];
+        return day;
     }
-    
-    let shortWeekDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-    
-    // console.log(day);
-    
-    let day = 0;
 
-    if(day > 6) {
-        day = 0
-    }
+    console.log(props)
     
-    let textDay = shortWeekDays[day]; 
 
     return(
         <div class="col-sm-2">
-            <div><p class="day-two days">{textDay}</p></div>
+            <div><p class="day-two days">{handleDay()}</p></div>
             <div><span class="other-icons">
                 <HandleMainIcon description={props.forecast.weather[0].main} />
                 </span>

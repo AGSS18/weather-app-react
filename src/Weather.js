@@ -1,23 +1,32 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 import "./Weather.css";
 import Forecast from "./Forecast";
 
 export default function Weather(props) {
- 
   const [weatherData, setWeatherData] = useState({ready: false});
   let [city, setCity] = useState(props.defaultCity);
   const [hidden, setHidden] = useState(true);
   const [favCities, setFavCities] = useState("");
+  let [units, setUnits] = useState("metric");
   
+  function changeUnits(response) {
+    console.log(response);
+    if(response === "imperial") {
+      setUnits("imperial")
+    } else {
+      setUnits("metric")
+    }
+  }
+
   function search() {
     const apiKey = "2a2676887289368652de121a9db03637";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     
     axios.get(apiUrl).then(handleResponse);
   }
-  
+
   function handleSubmit(event) {
     event.preventDefault();
     search();
@@ -96,8 +105,8 @@ export default function Weather(props) {
           </form>
         </div>
       </div>
-      <WeatherInfo data={weatherData}/>
-      <Forecast lon={weatherData.longitude} lat={weatherData.latitude} date={weatherData.date}/>
+      <WeatherInfo data={weatherData} changeUnits={changeUnits} weatherUnits={units} />
+      <Forecast lon={weatherData.longitude} lat={weatherData.latitude} date={weatherData.date} weatherUnits={units} />
     </div>
   );
   } else {
