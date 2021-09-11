@@ -1,6 +1,8 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import background from "./media/deffault.JPG";
 
 export default function HandleBg(props) {
+  let [changeBg, setChangeBg] = useState(background);
 
     const changeBgImage = {
       multipleConditions: ["Mist", "Smoke", "Haze", "Dust", "Fog", "Sand", "Ash", "Squal",
@@ -16,28 +18,29 @@ export default function HandleBg(props) {
         "Rain" : [`rain.jfif`, `rain_2.jfif`, `rain_3.jfif`, `rain_4.jfif`, `rain_5.jfif`],
       }
     }
- 
-   
+  
+    useEffect(() => {
+      let random = Math.floor(Math.random() * 5);
+      if(changeBgImage.multipleConditions.includes(props.description)){
+        setChangeBg(images[changeBgImage.multipleConditionsImages[random]].default);
+      } else {
+        if(changeBgImage.otherConditions.includes(props.description)){
+          setChangeBg(images[changeBgImage.otherConditionsImages[props.description][random]].default);
+        }
+      }
+    }, [props.city]);
+    
     function importAll(r) {
       let image = {};
       r.keys().map((item, index) => { image[item.replace('./', '')] = r(item); return null });
       return image;
     }
-   
-    const images = importAll(require.context('./media', false, /\.(jfif|jpe?g|JPG)$/));
- 
-    function updateBackgroundImage() {
-      let random = Math.floor(Math.random() * 5);
-      if(changeBgImage.multipleConditions.includes(props.description)){
-        return changeBgImage.multipleConditionsImages[random];
-      } else {
-        if(changeBgImage.otherConditions.includes(props.description)){
-          return changeBgImage.otherConditionsImages[props.description][random];
-        }
-      }
-    }
+    
+    let images = importAll(require.context('./media', false, /\.(jfif|jpe?g|JPG)$/));
 
     return (
-        `backgroundImage: url(${images[updateBackgroundImage].default})`
+        <div
+        className="one-day-temp-container" style={{ backgroundImage: `url(${changeBg})`}}
+      >{props.children}</div>
     );
 }
