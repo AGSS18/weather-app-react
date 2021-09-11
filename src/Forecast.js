@@ -27,10 +27,14 @@ export default function Forecast(props) {
             <div className="row">
               {forecast.map(function(dailyForecast, index){
                 index = index + 1;
-                if(index < 7) {
-                  return (
-                    <ForecastDaysComponent key={index} forecast={dailyForecast} units={props.weatherUnits}/>
-                    )
+                if(index > 1) {
+                  if(index < 8) {
+                    return (
+                      <ForecastDaysComponent key={index} forecast={dailyForecast} units={props.weatherUnits}/>
+                      )
+                  } else {
+                    return null
+                  }
                   } else {
                     return null
                   }

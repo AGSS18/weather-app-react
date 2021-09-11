@@ -42,7 +42,7 @@
 
 .Weather .unit-button {
   transition: all 200ms ease-in-out;
-  /* text-decoration: underline #ccc; */
+  text-decoration: 5px underline #ccc;
 }
 
 .Weather .unit-button:hover {
