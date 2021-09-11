@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 import "./Weather.css";
@@ -12,7 +12,6 @@ export default function Weather(props) {
   let [units, setUnits] = useState("metric");
   
   function changeUnits(response) {
-    console.log(response);
     if(response === "imperial") {
       setUnits("imperial")
     } else {

@@ -19,20 +19,17 @@ export default function ForecastDaysComponent(props) {
         let shortWeekDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
         let day = shortWeekDays[date.getDay()];
         return day;
-    }
-
-    console.log(props)
-    
+    }  
 
     return(
-        <div class="col-sm-2">
-            <div><p class="day-two days">{handleDay()}</p></div>
-            <div><span class="other-icons">
+        <div className="col-sm-2">
+            <div><p className="day-two days">{handleDay()}</p></div>
+            <div><span className="other-icons">
                 <HandleMainIcon description={props.forecast.weather[0].main} />
                 </span>
             </div>
             <div>
-                <p class="max-min-temp"><span class="max-temp temperature">{maxTemp()}</span>° <span class="min-temp temperature">{minTemp()}</span>°</p>
+                <p className="max-min-temp"><span className="max-temp temperature">{maxTemp()}</span>° <span className="min-temp temperature">{minTemp()}</span>°</p>
             </div>
         </div>
     );

@@ -21,7 +21,7 @@ export default function WeatherInfo(props){
   
   // function importAll(r) {
   //   let image = {};
-  //   r.keys().map((item, index) => { image[item.replace('./', '')] = r(item); });
+  //   r.keys().map((item, index) => { image[item.replace('./', '')] = r(item); return null });
   //   return image;
   // }
   
@@ -37,8 +37,6 @@ export default function WeatherInfo(props){
   //     }
   //   }
   // }
-
-  console.log(props.weatherUnits);
 
     return( 
     <div
