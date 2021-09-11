@@ -18,18 +18,18 @@ export default function HandleBg(props) {
         "Rain" : [`rain.jfif`, `rain_2.jfif`, `rain_3.jfif`, `rain_4.jfif`, `rain_5.jfif`],
       }
     }
-  
-    useEffect(() => {
+
+    function updateBgImage() {
       let random = Math.floor(Math.random() * 5);
       if(changeBgImage.multipleConditions.includes(props.description)){
-        setChangeBg(images[changeBgImage.multipleConditionsImages[random]].default);
+        return images[changeBgImage.multipleConditionsImages[random]].default;
       } else {
         if(changeBgImage.otherConditions.includes(props.description)){
-          setChangeBg(images[changeBgImage.otherConditionsImages[props.description][random]].default);
+          return images[changeBgImage.otherConditionsImages[props.description][random]].default;
         }
       }
-    }, [props.city]);
-    
+    }
+  
     function importAll(r) {
       let image = {};
       r.keys().map((item, index) => { image[item.replace('./', '')] = r(item); return null });
@@ -37,6 +37,10 @@ export default function HandleBg(props) {
     }
     
     let images = importAll(require.context('./media', false, /\.(jfif|jpe?g|JPG)$/));
+    
+    useEffect(() => {
+      setChangeBg(updateBgImage);
+    }, [props.city]) //eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div
