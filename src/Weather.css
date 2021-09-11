@@ -90,7 +90,7 @@
 .Search .favorites {
   list-style: none;
   display: flex;
-  margin-top: 15px;
+  margin: 8px 0;
   color: rgb(181, 181, 181);
   font-weight: bold;
   padding: 0;
@@ -127,7 +127,7 @@ li[class^="city-"]:hover,
 
 .Search .search-container {
   position: relative;
-  margin: 20px auto 0px;
+  margin: 10px auto 0px;
   padding: 0px 0px 10px;
   text-align: center;
   width: fit-content;

@@ -9,3 +9,13 @@ body {
   height: fit-content;
   text-align: center;
 }
+
+.note {
+  color: rgb(169, 169, 169);
+  text-shadow: none;
+  font-size: 12px;
+  margin-top: 8px;
+  margin-bottom: 0;
+  margin-left: 40%;
+  text-decoration: underline;
+}

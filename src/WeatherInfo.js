@@ -8,7 +8,6 @@ export default function WeatherInfo(props){
 
     return( 
       <HandleBg city={props.data.city} description={props.data.mainDescription}> 
-        <div>
           <p className="city" id="city">
             {props.data.city}
           </p>
@@ -46,7 +45,6 @@ export default function WeatherInfo(props){
               </div>
             </div>
           </div>
-        </div>
       </HandleBg>
     );
 }

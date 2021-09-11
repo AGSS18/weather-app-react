@@ -13,6 +13,7 @@ function App() {
     <div className="App">
       <div className="container">
         <Weather defaultCity="Monterrey"/>
+        <p className="note"><em>**To change units click °C or °F**</em></p>
         <Footer />
       </div>
     </div>
