@@ -91,13 +91,13 @@ export default function Weather(props) {
             <button type="submit" className="search-button">
               <i className="fa fa-search"></i>
             </button>
-            <button
+            {/* <button
               type="button"
               className="location-button"
               id="location-button"
             >
               <i className="fas fa-map-marker-alt"></i>
-            </button>
+            </button> */}
             <button type="button" className="plus-icon" id="plus-icon">
               <i onClick={showFavCities} className="fas fa-star"></i>
             </button>

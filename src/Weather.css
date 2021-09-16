@@ -187,7 +187,7 @@ input[type="search"]:focus {
   background-color: transparent;
   color: rgb(172, 170, 170);
   position: relative;
-  left: -15px;
+  left: -10px;
   transition: all 200ms ease-in-out;
 }
 
